@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import useSWRImmutable from 'swr/immutable'
 import { create } from 'zustand'
-import { ClientData, Connection, DatabaseConfig, showActivateWindow } from '../../tauri'
+import { ClientData, Connection, DatabaseConfig } from '../../tauri'
 import {
     getLicenseActivated,
     LICENSE_ACTIVATE_SUCCESS,
@@ -99,23 +99,7 @@ getLicenseActivated()
     })
 
 export const useCheckCreateConnection = () => {
-    const { activated } = useActivateStore()
-    const { data: connections } = useConnections()
-    return useCallback(
-        (count: number) => {
-            if (activated) {
-                return true
-            }
-            if (connections === undefined) {
-                return true
-            }
-            const FREE_CONNECTIONS_COUNT = 2
-            if (connections.length + count > FREE_CONNECTIONS_COUNT) {
-                showActivateWindow()
-                return false
-            }
-            return true
-        },
-        [activated, connections]
-    )
+    return useCallback((_count: number) => {
+        return true
+    }, [])
 }
