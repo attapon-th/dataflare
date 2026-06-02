@@ -50,6 +50,7 @@ pub async fn show_connections_window(app: AppHandle) -> Result<(), String> {
     .title("Dataflare")
     .inner_size(660., 440.)
     .min_inner_size(660., 440.)
+    .maximized(true)
     .visible(false)
     .decorations(DECORATION)
     .disable_drag_drop_handler()
